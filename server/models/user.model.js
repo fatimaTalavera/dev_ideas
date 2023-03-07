@@ -27,15 +27,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a password'],
         minlength: [3, 'Password must be 8 characters or longer']
-    },
-    ideas: [{
-		type: mongoose.Schema.Types.ObjectId,
-        ref: "Idea"
-	}],
-    likes: [{
-		type: mongoose.Schema.Types.ObjectId,
-        ref: "Idea"
-	}]
+    }
 }, { timestamps: true });
 
 //middleware

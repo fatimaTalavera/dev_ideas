@@ -2,13 +2,13 @@ const Idea = require("../models/idea.model");
 
 module.exports.findAllIdeas = (req, res) => {
   Idea.find().collation({'locale':'en'}).sort({createdAt: -1}).populate('owner', '-password')
-    .then(allDaIdeas => res.json({ ideas: allDaIdeas, username: req.username }))
+    .then(allDaIdeas => res.json({ ideas: allDaIdeas, username: req.username, user: req.user }))
     .catch(err => res.json({ message: "Something went wrong", error: err }));
 };
 
 module.exports.findOneSingleIdea = (req, res) => {
 	Idea.findOne({ _id: req.params.id }).populate('owner', '-password').populate('likes', '-password')
-		.then(oneSingleIdea => res.json({ idea: oneSingleIdea, username: req.username }))
+		.then(oneSingleIdea => res.json({ idea: oneSingleIdea, username: req.username, user: req.user }))
 		.catch(err => res.status(404).json(err));
 };
 
