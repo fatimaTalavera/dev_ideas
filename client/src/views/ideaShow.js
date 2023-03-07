@@ -30,14 +30,19 @@ const IdeaShow = (props) => {
             <div className='container mt-5'>
                 <Idea idea={idea} likes={idea.likes?.map(i => i._id)} current_user={user}/>
                 
-                <p className='mt-2'>People who liked this post:</p>
-                <div className='idea border rounded border-white my-1 py-2 px-3'>
-                {idea.likes?.map(user => {
-                    return (<div>
-                        <span>{`${user.name} ${user.lastname} `}</span><Link to={`/user/${user._id}`} className='fw-bold text-white'>{`@${user.alias}`}</Link>
-                    </div>)
-                })}
-                </div>
+                
+                {idea.likes?.length > 0 &&
+                    <>
+                    <p className='mt-2'>People who liked this post:</p>
+                    <div className='idea border rounded border-white my-1 py-2 px-3'>
+                    {idea.likes?.map(user => {
+                        return (<div>
+                            <span>{`${user.name} ${user.lastname} `}</span><Link to={`/user/${user._id}`} className='fw-bold text-white'>{`@${user.alias}`}</Link>
+                        </div>)
+                    })}
+                    </div>
+                    </>
+                }
             </div>
         </>
     )
