@@ -29,7 +29,7 @@ const IdeasIndex = (props) => {
             <IdeaNew/>
             <div className='container'>
                 {ideas.map((idea, index) => {
-                    return (<Idea idea={idea} likes={idea.likes} current_user={user}/>)
+                    return (<Idea idea={idea} likes={idea.likes} current_user={user} key={idea._id}/>)
                 })}
             </div>
         </>
