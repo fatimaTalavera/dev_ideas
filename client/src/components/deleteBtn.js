@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
 const DeleteBtn = ({ id, redirectFn }) => {
     const deleteHandler = ()=>{
@@ -8,7 +10,9 @@ const DeleteBtn = ({ id, redirectFn }) => {
     }
 
     return (
-        <button className='btn btn-danger px-5' onClick={deleteHandler}>Walk the Plank</button>
+        <button className='btn btn-danger position-absolute top-0 end-0' onClick={deleteHandler} title='Delete Idea'>
+            <FontAwesomeIcon icon={faTrashCan} />
+        </button>
     )
 }
 export default DeleteBtn;

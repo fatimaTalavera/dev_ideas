@@ -19,13 +19,13 @@ const LikeBtn = ({ id, likes, current_user }) => {
     }
 
     return (
-        <>
-        <a href='#' onClick={likeHandler} className={liked ? 'text-danger' : 'text-white'}>
-            <FontAwesomeIcon icon={faHeart} />
-        </a>
-        <Link to={`/idea/${id}`} className='ms-3 text-white'>{likeCount} {likeCount == 1? 'person ' : 'people '}</Link>
-        <span>like this</span>
-        </>
+        <div>
+            <a href='#' onClick={likeHandler} className={liked ? 'text-danger' : 'text-white'}>
+                <FontAwesomeIcon icon={faHeart} />
+            </a>
+            <Link to={`/idea/${id}`} className='ms-3 text-white'>{likeCount} {likeCount == 1? 'person ' : 'people '}</Link>
+            <span>like this</span>
+        </div>
     )
 }
 export default LikeBtn;
