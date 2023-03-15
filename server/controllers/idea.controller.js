@@ -13,8 +13,12 @@ module.exports.findOneSingleIdea = (req, res) => {
 };
 
 module.exports.createNewIdea = (req, res) => {
-  const {description, imgName} = req.body
-  const imgPath= `http://localhost:8000/uploads/${imgName}`
+  const {description, imgName, image} = req.body
+  let imgPath = null;
+  if(imgName != undefined){
+    console.log('es idea...', imgName)
+    imgPath= `http://localhost:8000/uploads/${imgName}`
+  }
   const idea = new Idea ({ 
     description, 
     imgPath,

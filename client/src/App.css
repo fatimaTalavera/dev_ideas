@@ -6,7 +6,11 @@ body {
   background-color: var(--bg-color);
   color: var(--white);
 }
-.imgContainer{
-  max-width: 87rem;
-  max-height: 15rem;
+.img-fluid{
+  height: 300px;
+  object-fit: cover;
+}
+
+.image-upload>input {
+  display: none;
 }

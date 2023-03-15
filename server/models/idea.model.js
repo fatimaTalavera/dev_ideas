@@ -6,8 +6,7 @@ const IdeaSchema = new mongoose.Schema({
 		required: [true, 'Description is required']
 	},
 	imgPath: {
-		type: String,
-		required: [true, 'Description is required']
+		type: String
 	},
 	owner: {
 		type: mongoose.Schema.Types.ObjectId,

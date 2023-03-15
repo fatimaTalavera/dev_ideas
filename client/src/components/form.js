@@ -37,7 +37,7 @@ const Form = (props) => {
     const { id } = useParams()
     const [state, dispatch] = useReducer(reducer, initialState)
     const { handleSubmit, buttonTitle } = props;
-    const [seletedFile, setSeletedFile] = useState ();
+    const [seletedFile, setSeletedFile] = useState (null);
 
     useEffect(() => {
         if (!id) return
@@ -80,16 +80,18 @@ const Form = (props) => {
     }
 
     return (
-        <form onSubmit={onSubmit} className='container d-flex justify-content-between align-items-center mt-5'>
-            <div className='flex-grow-1 me-2'>
-                <input type='text' className='form-control' placeholder='Post something here...' name='description' onChange={onChange} value={state.description?.value || ''} />
-                {state.description?.error !== null && <div className='col-12 text-danger'> {state.description?.error} </div>}
-                <img src={seletedFile} alt ="image idea" className="img-lg mx-3" />
-                <div className="form-group">
-                    <input type="file" className="form-control-file mt-4" id="image" onChange={onFileChange}/>
+        <form onSubmit={onSubmit} className='container'>
+            <div className='d-flex justify-content-between align-items-center mt-5'>
+                <div className='flex-grow-1 me-2'>
+                    <input type='text' className='form-control' placeholder='Post something here...' name='description' onChange={onChange} value={state.description?.value || ''} />
+                    {state.description?.error !== null && <div className='col-12 text-danger'> {state.description?.error} </div>}
                 </div>
+                <button type='submit' className='btn btn-primary'>{buttonTitle}</button>
             </div>
-            <button type='submit' className='btn btn-primary'>{buttonTitle}</button>
+            {seletedFile !== null &&  <img src={seletedFile} alt ="image idea" className="img-fluid mx-3" />}
+            <div className="form-group">
+                <input type="file" className="form-control-file mt-4" id="image" onChange={onFileChange}/>
+            </div>
         </form>
     )
 }

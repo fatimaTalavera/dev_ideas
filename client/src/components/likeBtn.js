@@ -23,7 +23,7 @@ const LikeBtn = ({ id, likes, current_user }) => {
         <a href='#' onClick={likeHandler} className={liked ? 'text-danger' : 'text-white'}>
             <FontAwesomeIcon icon={faHeart} />
         </a>
-        <Link to={`/idea/${id}`} className='ms-5 text-white'>{likeCount} {likeCount == 1? 'person ' : 'people '}</Link>
+        <Link to={`/idea/${id}`} className='ms-3 text-white'>{likeCount} {likeCount == 1? 'person ' : 'people '}</Link>
         <span>like this</span>
         </>
     )
