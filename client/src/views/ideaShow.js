@@ -30,7 +30,6 @@ const IdeaShow = (props) => {
             <div className='container mt-5'>
                 <Idea idea={idea} likes={idea.likes?.map(i => i._id)} current_user={user}/>
                 
-                
                 {idea.likes?.length > 0 &&
                     <>
                     <p className='mt-2'>People who liked this post:</p>

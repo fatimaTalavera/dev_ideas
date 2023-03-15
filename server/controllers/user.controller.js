@@ -23,10 +23,7 @@ module.exports = {
     },
 
     loginUser: async (req, res) => {
-        const user = await User.findOne({ email: req.body.email })
-        if (!user) {
-            res.status(400).json({ error: "Invalid Email or Password" })
-        } else {
+        User.findOne({ email: req.body.email }).then(user => {
             bcrypt
                 .compare(req.body.password, user.password)
                 .then(passwordIsValid => {
@@ -40,8 +37,9 @@ module.exports = {
                     }
                 })
                 .catch(err => res.json({ msg: "invalid login attempt" }));
-        }
+        })
     },
+
     logoutUser: (req, res) => {
         res.clearCookie('userToken')
         res.json({ success: 'User logged out' })
