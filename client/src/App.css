@@ -6,3 +6,7 @@ body {
   background-color: var(--bg-color);
   color: var(--white);
 }
+.imgContainer{
+  max-width: 87rem;
+  max-height: 15rem;
+}

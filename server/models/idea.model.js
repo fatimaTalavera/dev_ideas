@@ -5,6 +5,10 @@ const IdeaSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'Description is required']
 	},
+	imgPath: {
+		type: String,
+		required: [true, 'Description is required']
+	},
 	owner: {
 		type: mongoose.Schema.Types.ObjectId,
         ref: "User"
@@ -14,6 +18,10 @@ const IdeaSchema = new mongoose.Schema({
         ref: "User"
 	}]
 }, { timestamps: true });
+
+IdeaSchema.methods.setImgPath = function setImgPath (filename) {
+	IdeaSchema.imgPath = `http://localhost:8000/uploads/${filename}`
+}
 
 const Idea = mongoose.model("Idea", IdeaSchema);
 

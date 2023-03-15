@@ -1,10 +1,14 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const initialState = {
     description: {
         value: '',
+        error: null
+    },
+    image:{
+        value:'',
         error: null
     }
 };
@@ -33,6 +37,7 @@ const Form = (props) => {
     const { id } = useParams()
     const [state, dispatch] = useReducer(reducer, initialState)
     const { handleSubmit, buttonTitle } = props;
+    const [seletedFile, setSeletedFile] = useState ();
 
     useEffect(() => {
         if (!id) return
@@ -63,11 +68,26 @@ const Form = (props) => {
         handleSubmit(serializeState(state), dispatch)
     }
 
+    function onFileChange(e){
+        dispatch({
+            type: "image",
+            payload: {value: e.target.files[0]}
+        });
+        const [file] = e.target.files;
+        const reader = new FileReader();
+        reader.onloadend = ()=> setSeletedFile(reader.result);
+        reader.readAsDataURL(file);
+    }
+
     return (
         <form onSubmit={onSubmit} className='container d-flex justify-content-between align-items-center mt-5'>
             <div className='flex-grow-1 me-2'>
                 <input type='text' className='form-control' placeholder='Post something here...' name='description' onChange={onChange} value={state.description?.value || ''} />
                 {state.description?.error !== null && <div className='col-12 text-danger'> {state.description?.error} </div>}
+                <img src={seletedFile} alt ="image idea" className="img-lg mx-3" />
+                <div className="form-group">
+                    <input type="file" className="form-control-file mt-4" id="image" onChange={onFileChange}/>
+                </div>
             </div>
             <button type='submit' className='btn btn-primary'>{buttonTitle}</button>
         </form>

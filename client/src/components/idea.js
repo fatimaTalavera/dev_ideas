@@ -7,6 +7,7 @@ const Idea = ({ idea, likes, current_user }) => {
             <div className='idea-header'>
                 <Link to={`/user/${idea.owner?._id}`} className='fw-bold text-white'>{idea.owner?.alias}</Link>
             </div>
+            <img src={idea.imgPath} alt ="image idea" className="mx-auto img-fluid" />
             <div className='idea-content'>{idea.description}</div>
             <div>
                 <LikeBtn id={idea._id} likes={likes} current_user={current_user} />

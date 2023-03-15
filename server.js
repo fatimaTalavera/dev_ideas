@@ -8,6 +8,8 @@ require('dotenv').config();
 // This will fire our mongoose.connect statement to initialize our database connection
 require("./server/config/mongoose.config");
 
+app.use('/uploads', express.static('./server/uploads'))
+
 // Middleware
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))

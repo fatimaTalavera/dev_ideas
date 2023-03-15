@@ -8,7 +8,11 @@ const IdeaNew = (props) => {
 
     const saveData = (data, dispatch) => {
         console.log('Saving...', data)
-        axios.post('http://localhost:8000/api/ideas/new', data, {withCredentials:true})
+        const formData = new FormData()
+        formData.append('description', data.description)
+        formData.append('image', data.image)
+        formData.append('imgName', data.image.name)
+        axios.post('http://localhost:8000/api/ideas/new', formData, {withCredentials:true})
             .then(resp => {
                 alert('Idea was created successfully.')
                 redirect(0)

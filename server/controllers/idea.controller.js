@@ -13,7 +13,14 @@ module.exports.findOneSingleIdea = (req, res) => {
 };
 
 module.exports.createNewIdea = (req, res) => {
-  Idea.create({...req.body, owner: req.user})
+  const {description, imgName} = req.body
+  const imgPath= `http://localhost:8000/uploads/${imgName}`
+  const idea = new Idea ({ 
+    description, 
+    imgPath,
+    owner: req.user
+  })
+  idea.save()
     .then(newlyCreatedIdea => res.json({ idea: newlyCreatedIdea }))
     .catch(err => res.status(400).json(err));
 };
