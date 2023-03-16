@@ -19,7 +19,7 @@ const Login = () => {
   }
 
   return (
-    <div className='col-12 col-md-6 mt-5'>
+    <div className='col-12 col-md-6 mt-2'>
       <div className='col-12 col-md-9 mx-auto card bg-white border-4 border-dark text-dark px-5 py-5'>
         <h1 className='text-center'>Login</h1>
         <form onSubmit={submitHandler}>
