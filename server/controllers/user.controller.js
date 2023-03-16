@@ -61,7 +61,7 @@ module.exports = {
                         const userToken = jwt.sign({_id: user._id, username: user.name}, SECRET)
                         res.status(201)
                             .cookie('userToken', userToken, {httpOnly:true, expires:new Date(Date.now() + EXPIRATION_TIME)})
-                            .json({ msg: "success!" })
+                            .json({ msg: "success!", user: user })
                     } else {
                         res.json({ msg: "Invalid Email or Password" });
                     }
