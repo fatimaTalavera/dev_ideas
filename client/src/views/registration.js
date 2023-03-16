@@ -9,7 +9,7 @@ const Registration = (props) => {
             <Navbar title='Welcome!' />
             <div className='d-flex flex-wrap'>
                 <SignUp />
-                <Login setUser={setUser}/>
+                <Login/>
             </div>
         </>
 
