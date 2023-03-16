@@ -18,7 +18,7 @@ const IdeaShow = (props) => {
         axios.get(`http://localhost:8000/api/ideas/${id}`, {withCredentials:true})
             .then(res => {
                 setIdea(res.data.idea)
-                setUser(res.data.user)
+                // setUser(res.data.user)
                 setUsername(res.data.username)
             })
             .catch(error => redirect('/404'))
