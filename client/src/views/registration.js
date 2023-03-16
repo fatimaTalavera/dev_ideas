@@ -7,7 +7,7 @@ const Registration = (props) => {
     return (
         <>
             <Navbar title='Welcome!' />
-            <div className='text-center'>
+            <div className='text-center mt-3'>
                 <div className='animate-text'>
                     <h1>Enjoy your code!</h1>
                 </div>
