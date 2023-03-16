@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import LikeBtn from './likeBtn'
 import DeleteBtn from './deleteBtn'
 
-const Idea = ({ idea, likes, current_user }) => {
+const Idea = ({ idea, likes, current_user, socket }) => {
     const navigate = useNavigate()
     const redirect = event => navigate(0)
 
@@ -19,7 +19,7 @@ const Idea = ({ idea, likes, current_user }) => {
                 </div>
             }
             <LikeBtn id={idea._id} likes={likes} current_user={current_user} />
-            { idea?.owner?._id === current_user && <DeleteBtn id={idea._id} redirectFn={redirect}/> }
+            { idea?.owner?._id === current_user && <DeleteBtn id={idea._id} redirectFn={redirect} socket={socket}/> }
         </div>
     )
 }

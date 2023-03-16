@@ -1,17 +1,13 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Idea from '../components/idea'
 import Navbar from '../components/navbar'
 import IdeaNew from './/ideaNew'
 
-const IdeasIndex = (props) => {
+const IdeasIndex = ({socket}) => {
     const [ideas, setIdeas] = useState([])
     const [user, setUser] = useState('')
     const [welcomeTitle, setWelcomeTitle] = useState('')
-
-    const navigate = useNavigate()
-    const redirect = event => navigate(0)
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/ideas', { withCredentials: true })
@@ -23,17 +19,21 @@ const IdeasIndex = (props) => {
             .catch(error => console.log(error))
     }, [])
 
+    socket.on('deletedIdea', (_id)=>{
+        console.log("Deleted idea:", _id)
+        setIdeas(ideas.filter((idea)=> idea._id !== _id))
+    })
+
     return (
         <>
             <Navbar title={welcomeTitle} logoutBtn='true' />
             <IdeaNew/>
             <div className='container'>
                 {ideas.map((idea, index) => {
-                    return (<Idea idea={idea} likes={idea.likes} current_user={user} key={idea._id}/>)
+                    return (<Idea idea={idea} likes={idea.likes} current_user={user} key={idea._id} socket={socket}/>)
                 })}
             </div>
         </>
     )
 }
 export default IdeasIndex;
-//<DeleteBtn id={pr._id} redirectFn={redirect} />

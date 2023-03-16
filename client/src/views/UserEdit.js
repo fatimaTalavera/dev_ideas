@@ -74,7 +74,7 @@ const UserEdit = () => {
             <label htmlFor=""  className='form-label mt-3'>Alias:</label>
             <input type="text" value={alias} className='form-control' onChange={(e)=>setAlias(e.target.value)}/>  
             <div className='text-end'>
-              <button className='btn btn-primary mt-3'>Editar</button>
+              <button className='btn btn-primary mt-3'>Edit</button>
             </div>
           </div>
         </form>
