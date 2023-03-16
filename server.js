@@ -43,7 +43,7 @@ const io = socket(server, {
 })
 
 io.on('connection', (socket)=>{
-    console.log("connected user", socket.id)
+    console.log("connected user socket", socket.id)
     socket.on("deleteIdea", (payload)=>{
         console.log("payload", payload)
         Idea.deleteOne({_id: payload})

@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 import LikeBtn from './likeBtn'
 import DeleteBtn from './deleteBtn'
 
-const Idea = ({ idea, likes, current_user, socket }) => {
-    const navigate = useNavigate()
-    const redirect = event => navigate(0)
+const Idea = ({ idea, likes, current_user, deleteFn }) => {
 
     return (
         <div className='idea border rounded border-white my-3 py-2 px-3 position-relative'>
@@ -19,7 +16,7 @@ const Idea = ({ idea, likes, current_user, socket }) => {
                 </div>
             }
             <LikeBtn id={idea._id} likes={likes} current_user={current_user} />
-            { idea?.owner?._id === current_user && <DeleteBtn id={idea._id} redirectFn={redirect} socket={socket}/> }
+            { idea?.owner?._id === current_user && <DeleteBtn id={idea._id} deleteFn={deleteFn} /> }
         </div>
     )
 }

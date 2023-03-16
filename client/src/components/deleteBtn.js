@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
-const DeleteBtn = ({ id, redirectFn, socket }) => {
+const DeleteBtn = ({ id, deleteFn }) => {
     const deleteHandler = ()=>{
         console.log("try to delete with socket")
-        socket.emit('deleteIdea', id)
-        //redirectFn()
+        deleteFn(id)
     }
 
     return (

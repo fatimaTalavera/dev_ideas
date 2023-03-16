@@ -22,11 +22,12 @@ const ProtectedRoute = ({ user, redirectPath = '/*' }) => {
 
 function App() {
   const [socket] = useState(()=>io(":8000"))
+  
   useEffect(()=>{
-    socket.on('connection', ()=>{
+    socket.on('connect', ()=>{
       console.log('Connection established to server with socket')
     })
-    return ()=>  socket.disconnect(true)
+    return ()=> {}
   }, [])
 
   return (

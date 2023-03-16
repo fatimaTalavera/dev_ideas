@@ -24,13 +24,17 @@ const IdeasIndex = ({socket}) => {
         setIdeas(ideas.filter((idea)=> idea._id !== _id))
     })
 
+    const deleteFn = id => {
+        socket.emit('deleteIdea', id)
+    }
+
     return (
         <>
             <Navbar title={welcomeTitle} logoutBtn='true' />
             <IdeaNew/>
             <div className='container'>
                 {ideas.map((idea, index) => {
-                    return (<Idea idea={idea} likes={idea.likes} current_user={user} key={idea._id} socket={socket}/>)
+                    return (<Idea idea={idea} likes={idea.likes} current_user={user} key={idea._id} deleteFn={deleteFn}/>)
                 })}
             </div>
         </>
