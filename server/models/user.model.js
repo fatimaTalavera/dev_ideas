@@ -10,6 +10,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Last name is required'],
     },
+    imageUrl:{
+        type: String
+    },
     alias: {
         type: String,
         required: [true, 'Alias is required'],

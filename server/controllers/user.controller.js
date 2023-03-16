@@ -10,6 +10,36 @@ module.exports = {
             .then(oneSingleUser => res.json({ user: oneSingleUser, username: req.username }))
             .catch(err => res.status(404).json(err));
     },
+    getUser: (req, res) => {
+        User.findOne({ _id: req.user }).select("name lastname imageUrl alias email")
+            .then(usuario => res.json({ user:usuario }))
+            .catch(err => res.status(404).json(err));
+    },
+
+    editUser : (req, res)=>{
+        let imgPath = null;
+        var elementos = {};
+        if(typeof req.body.imgName !== 'undefined' && req.body.imgName != 'undefined' ){
+            imgPath= `http://localhost:8000/uploads/${req.body.imgName}`;
+            elementos = {   name: req.body.name,
+                            lastname: req.body.lastname,
+                            alias: req.body.alias,
+                            imageUrl: imgPath,
+            };
+        }else{
+            elementos ={    name: req.body.name,
+                            lastname: req.body.lastname,
+                            alias: req.body.alias
+            }
+        }
+
+        User.findByIdAndUpdate(
+            req.user,
+            elementos,
+            { new: true, useFindAndModify: false }
+        ).then(usuarioN => res.json({ usuario: usuarioN }))
+        .catch(err => res.status(400).json(err));
+    },
     signupUser: async (req, res) => {
         try {
             const newUser = await User.create(req.body)
@@ -44,5 +74,7 @@ module.exports = {
         res.clearCookie('userToken')
         res.json({ success: 'User logged out' })
     }
+
+    
 
 }
