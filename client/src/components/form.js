@@ -90,7 +90,7 @@ const Form = (props) => {
             </div>
             {seletedFile !== null &&  <img src={seletedFile} alt ="image idea" className="img-fluid mx-3" />}
             <div className="form-group">
-                <input type="file" className="form-control-file mt-4" id="image" onChange={onFileChange}/>
+                <input type="file" className="form-control-file mt-2 mb-4" id="image" onChange={onFileChange}/>
             </div>
         </form>
     )
