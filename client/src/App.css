@@ -14,3 +14,21 @@ body {
 .image-upload>input {
   display: none;
 }
+.animate-text{
+  display: inline-block;
+}
+.animate-text h1 {
+  color: white;
+  overflow: hidden;
+  border-right: .15rem solid #0d6efd;
+  white-space: nowrap;
+  animation: typing 2s steps(16, end) forwards, blinking 0.75s infinite;
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blinking {
+  from { border-color: transparent; }
+  to { border-color: #0d6efd; }
+}

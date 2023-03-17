@@ -1,6 +1,8 @@
 import { useReducer, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImage } from '@fortawesome/free-regular-svg-icons'
 
 const initialState = {
     description: {
@@ -88,9 +90,13 @@ const Form = (props) => {
                 </div>
                 <button type='submit' className='btn btn-primary'>{buttonTitle}</button>
             </div>
-            {seletedFile !== null &&  <img src={seletedFile} alt ="image idea" className="img-fluid mx-3" />}
-            <div className="form-group">
-                <input type="file" className="form-control-file mt-4" id="image" onChange={onFileChange}/>
+            {seletedFile !== null &&  <img src={seletedFile} alt ="image idea" className="img-fluid" />} 
+            <div>
+                <label htmlFor="formId" className='btn btn-outline-success mt-3'>
+                <input name="" type="file" id="formId" onChange={onFileChange} hidden />
+                    <FontAwesomeIcon icon={faImage} />
+                    <span className= 'mx-1'> Select an image</span>
+                </label>
             </div>
         </form>
     )

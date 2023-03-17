@@ -1,12 +1,10 @@
-import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
-const DeleteBtn = ({ id, redirectFn }) => {
+const DeleteBtn = ({ id, deleteFn }) => {
     const deleteHandler = ()=>{
-        axios.delete(`http://localhost:8000/api/ideas/delete/${id}`, {withCredentials:true})
-            .then(res => redirectFn())
-            .catch(err => console.log(err))
+        console.log("try to delete with socket")
+        deleteFn(id)
     }
 
     return (

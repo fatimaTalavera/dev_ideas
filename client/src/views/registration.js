@@ -7,6 +7,11 @@ const Registration = (props) => {
     return (
         <>
             <Navbar title='Welcome!' />
+            <div className='text-center'>
+                <div className='animate-text'>
+                    <h1>Enjoy your code!</h1>
+                </div>
+            </div>
             <div className='d-flex flex-wrap'>
                 <SignUp />
                 <Login/>

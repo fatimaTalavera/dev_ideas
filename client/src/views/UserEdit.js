@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react'
 import axios from 'axios'
 import {redirect, useNavigate} from 'react-router-dom'
 import Navbar from '../components/navbar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImage } from '@fortawesome/free-regular-svg-icons'
 
 const UserEdit = () => {
 
@@ -60,10 +62,14 @@ const UserEdit = () => {
       <div className='col-12 col-md-10 offset-md-1 card bg-white border-1 border-dark text-dark px-5 py-5'>
         <h1 className='text-center'>{alias}</h1>
         <form className='row' onSubmit={submitHandler}>
-          <div className='col-md-6'>
+          <div className='text-center col-md-6'>
             {seletedFile !== null &&  <img src={seletedFile} alt ="image idea" className="img-fluid mx-3" />}
-            <div className="form-group">
-                <input type="file" className="form-control-file btn btn-primary mt-3 mt-4" id="image" onChange={onFileChange}/>
+            <div>
+                <label htmlFor="formId" className='btn btn-outline-success mt-3'>
+                <input name="" type="file" id="formId" onChange={onFileChange} hidden />
+                    <FontAwesomeIcon icon={faImage} />
+                    <span className= 'mx-1'> Select an image</span>
+                </label>
             </div>
           </div>
           <div className='col-md-6'>
@@ -74,7 +80,7 @@ const UserEdit = () => {
             <label htmlFor=""  className='form-label mt-3'>Alias:</label>
             <input type="text" value={alias} className='form-control' onChange={(e)=>setAlias(e.target.value)}/>  
             <div className='text-end'>
-              <button className='btn btn-primary mt-3'>Editar</button>
+              <button className='btn btn-primary mt-3'>Edit</button>
             </div>
           </div>
         </form>
