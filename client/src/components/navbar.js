@@ -1,15 +1,21 @@
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
+import { useCookies } from 'react-cookie';
 
 const Navbar = (props) => {
     const {title, logoutBtn, addIdeaBtn, boardBtn } = props
     const navigate = useNavigate()
     const redirect = route => navigate(route || '/')
+    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+
 
     const logout = e => {
         e.preventDefault()
         axios.get('http://localhost:8000/api/logout', {withCredentials:true})
-            .then(res => redirect('/'))
+            .then(res => {
+                removeCookie('user')
+                redirect('/')
+            })
             .catch(error => console.log(error))
     }
 
