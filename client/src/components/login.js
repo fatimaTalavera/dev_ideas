@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [cookies, setCookie] = useCookies(['userToken']);
 
   const navigate = useNavigate()
 
@@ -13,6 +15,7 @@ const Login = () => {
     axios.post('http://localhost:8000/api/login', { email, password }, { withCredentials: true, credentials: 'include' })
       .then(res => {
         console.log(res)
+        setCookie('user', res.data.user)
         navigate('/ideas');
       })
       .catch((err) => console.log(err))

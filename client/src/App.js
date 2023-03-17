@@ -6,14 +6,14 @@ import Page404 from './views/404'
 import './App.css';
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import UserEdit from './views/UserEdit'
-import { useCookies } from 'react-cookie'
+import { useCookies } from 'react-cookie';
 import {io} from 'socket.io-client'
 import { useState, useEffect } from 'react'
 
 const ProtectedRoute = ({ user, redirectPath = '/*' }) => {
-  const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
+  const [cookies, setCookie] = useCookies(['user']);
 
-  if (!cookies) {
+  if (!cookies['user']) {
     return <Navigate to={redirectPath} replace />;
   }
 
